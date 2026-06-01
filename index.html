@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UFBRA App — Sua vida acadêmica na palma da mão</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green: #1BC464;
+      --green-dark: #0FA852;
+      --green-bg: #EBF8F1;
+      --green-bg2: #F0FAF5;
+      --dark: #272727;
+      --dark-green: #183829;
+      --bg: #FFFFFF;
+      --bg-light: #F5F5F5;
+      --text: #111111;
+      --text-mid: #444444;
+      --text-muted: #888888;
+      --border: #E5E5E5;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      padding: 0 64px;
+      height: 68px;
+      background: rgba(240,250,245,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .nav-logo img {
+      height: 38px;
+      width: auto;
+      display: block;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 90px 64px 60px;
+      gap: 0;
+      background: linear-gradient(160deg, #f2fcf6 0%, #eaf8f1 60%, #f7fdf9 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      right: -80px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(27,196,100,0.10) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      flex: 0 0 48%;
+      max-width: 540px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #fff;
+      border: 1.5px solid rgba(27,196,100,0.3);
+      border-radius: 100px;
+      padding: 6px 16px 6px 10px;
+      margin-bottom: 28px;
+    }
+
+    .badge-dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--green-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .badge-dot svg {
+      width: 10px;
+      height: 10px;
+    }
+
+    .hero-badge span {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-mid);
+    }
+
+    .hero h1 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(38px, 4.8vw, 62px);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+
+    .hero h1 .green { color: var(--green); }
+
+    .hero-sub {
+      font-size: 16px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 420px;
+      margin-bottom: 36px;
+      font-weight: 400;
+    }
+
+    .store-btns {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .store-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background: var(--text);
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 12px 20px;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      line-height: 1.2;
+    }
+
+    .store-btn:hover {
+      background: #333;
+      transform: translateY(-2px);
+    }
+
+    .store-btn-labels { display: flex; flex-direction: column; }
+    .store-btn-labels small { font-size: 10px; opacity: 0.6; font-weight: 400; }
+    .store-btn-labels strong { font-size: 13px; font-weight: 700; }
+
+    .hero-visual {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      min-height: 520px;
+    }
+
+    .hero-phone-blob {
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      background: radial-gradient(circle, rgba(27,196,100,0.18) 0%, rgba(27,196,100,0.06) 50%, transparent 75%);
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .hero-phone {
+      width: 300px;
+      position: relative;
+      z-index: 1;
+      filter: drop-shadow(0 40px 80px rgba(0,0,0,0.14)) drop-shadow(0 8px 24px rgba(0,0,0,0.08));
+      animation: phoneFloat 5s ease-in-out infinite;
+      transform-origin: center bottom;
+    }
+
+    @keyframes phoneFloat {
+      0%   { transform: translateY(0px) rotate(0deg); }
+      25%  { transform: translateY(-10px) rotate(0.4deg); }
+      50%  { transform: translateY(-16px) rotate(0deg); }
+      75%  { transform: translateY(-8px) rotate(-0.4deg); }
+      100% { transform: translateY(0px) rotate(0deg); }
+    }
+
+    /* ── FEATURES ── */
+    .features {
+      padding: 96px 64px;
+      background: var(--bg);
+    }
+
+    .features-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .features-header h2 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(26px, 3vw, 40px);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      color: var(--text);
+      margin-bottom: 12px;
+      line-height: 1.15;
+    }
+
+    .features-header p {
+      font-size: 16px;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .feat-card {
+      background: var(--green-bg);
+      border-radius: 16px;
+      padding: 28px 24px 32px;
+      transition: transform 0.2s;
+    }
+
+    .feat-card:hover { transform: translateY(-4px); }
+
+    .feat-icon {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      color: var(--green);
+    }
+
+    .feat-card h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+    }
+
+    .feat-card p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* ── SPLIT LIGHT (Calendário) ── */
+    .split-light {
+      padding: 80px 64px;
+      background: var(--bg-light);
+      display: flex;
+      align-items: center;
+      gap: 80px;
+    }
+
+    .split-light-phone {
+      flex: 0 0 auto;
+      display: flex;
+      justify-content: center;
+    }
+
+    .split-light-phone img {
+      width: 300px;
+      filter: drop-shadow(0 24px 48px rgba(0,0,0,0.1));
+    }
+
+    .split-light-content {
+      flex: 1;
+      max-width: 480px;
+    }
+
+    .split-light-content h2 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(28px, 3.2vw, 46px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      color: var(--text);
+      margin-bottom: 32px;
+    }
+
+    .check-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 36px;
+    }
+
+    .check-list li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 15px;
+      color: var(--text-mid);
+      font-weight: 500;
+    }
+
+    .check-list li svg {
+      width: 22px;
+      height: 22px;
+      flex-shrink: 0;
+      color: var(--green);
+    }
+
+    .btn-green {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--green);
+      color: #fff;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      padding: 14px 32px;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .btn-green:hover {
+      background: var(--green-dark);
+      transform: translateY(-2px);
+    }
+
+    /* ── SPLIT DARK (Chat) ── */
+    .split-dark {
+      padding: 80px 64px;
+      background: var(--dark);
+      display: flex;
+      align-items: center;
+      gap: 80px;
+    }
+
+    .split-dark-content {
+      flex: 1;
+      max-width: 500px;
+    }
+
+    .split-dark-content h2 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(28px, 3.2vw, 46px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+
+    .split-dark-content > p {
+      font-size: 15px;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.7;
+      margin-bottom: 36px;
+      max-width: 400px;
+    }
+
+    .dark-features {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .dark-feat {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .dark-feat-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .dark-feat-text h4 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .dark-feat-text p {
+      font-size: 13.5px;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.55;
+    }
+
+    .split-dark-phone {
+      flex: 0 0 auto;
+      display: flex;
+      justify-content: center;
+    }
+
+    .split-dark-phone img {
+      width: 280px;
+      filter: drop-shadow(0 24px 48px rgba(0,0,0,0.4));
+    }
+
+    /* ── PERFORMANCE ── */
+    .performance {
+      padding: 80px 64px;
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      gap: 80px;
+    }
+
+    .perf-phone {
+      flex: 0 0 auto;
+      display: flex;
+      justify-content: center;
+    }
+
+    .perf-phone img {
+      width: 280px;
+      filter: drop-shadow(0 24px 48px rgba(0,0,0,0.1));
+    }
+
+    .perf-content {
+      flex: 1;
+    }
+
+    .perf-content h2 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(26px, 3vw, 42px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      color: var(--text);
+      margin-bottom: 14px;
+    }
+
+    .perf-content > p {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 400px;
+      margin-bottom: 36px;
+    }
+
+    .perf-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .perf-card {
+      background: var(--green-bg);
+      border-radius: 14px;
+      padding: 22px 20px;
+    }
+
+    .perf-card-icon {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--green);
+      margin-bottom: 12px;
+    }
+
+    .perf-card h4 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .perf-card p {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      background: var(--dark-green);
+      padding: 56px 64px 52px;
+      text-align: center;
+    }
+
+    .stats-bar-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 40px;
+      letter-spacing: -0.01em;
+    }
+
+    .stats-grid {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+    }
+
+    .stat-item {
+      flex: 1;
+      max-width: 220px;
+      padding: 0 24px;
+      border-right: 1px solid rgba(255,255,255,0.12);
+      text-align: center;
+    }
+
+    .stat-item:last-child { border-right: none; }
+
+    .stat-number {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 40px;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1;
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+
+    .stat-label {
+      font-size: 12.5px;
+      color: rgba(255,255,255,0.45);
+      font-weight: 400;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 28px 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-logo img {
+      height: 28px;
+      width: auto;
+      display: block;
+    }
+
+    .footer-copy {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 960px) {
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+
+      .hero { flex-direction: column; padding: 100px 24px 60px; }
+      .hero-content { max-width: 100%; }
+      .hero-sub { max-width: 100%; }
+
+      .features { padding: 60px 24px; }
+      .features-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+
+      .split-light { flex-direction: column; padding: 60px 24px; gap: 40px; }
+      .split-light-phone img { width: 240px; }
+
+      .split-dark { flex-direction: column; padding: 60px 24px; gap: 40px; }
+      .split-dark-phone img { width: 220px; }
+
+      .performance { flex-direction: column; padding: 60px 24px; gap: 40px; }
+      .perf-phone img { width: 220px; }
+
+      .stats-bar { padding: 48px 24px 40px; }
+      .stats-grid { flex-wrap: wrap; }
+      .stat-item { min-width: 50%; border-bottom: 1px solid rgba(255,255,255,0.12); padding: 20px 0; }
+      .stat-item:nth-child(2n) { border-right: none; }
+      .stat-item:nth-last-child(-n+2) { border-bottom: none; }
+
+      footer { flex-direction: column; gap: 16px; text-align: center; padding: 28px 24px; }
+    }
+
+    @media (max-width: 560px) {
+      .features-grid { grid-template-columns: 1fr; }
+      .perf-cards { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAV ── -->
+  <nav>
+    <a href="#" class="nav-logo">
+      <img src="assets/cupom-de-desconto-ufbra-logo-200-115.webp" alt="UFBRA">
+    </a>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <div class="badge-dot">
+          <svg viewBox="0 0 10 10" fill="none">
+            <path d="M2 5.5L4 7.5L8 3" stroke="#1BC464" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <span>Novo aplicativo acadêmico</span>
+      </div>
+
+      <h1>Sua vida acadêmica na <span class="green">palma<br>da mão.</span></h1>
+
+      <p class="hero-sub">Gerencie suas aulas, notas, avisos e atendimento direto pelo celular. Uma experiência completa e intuitiva desenhada para o seu sucesso.</p>
+
+      <div class="store-btns">
+        <a href="https://play.google.com/store/apps/details?id=com.workfuse.ufbra" target="_blank" rel="noopener" class="store-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M3.18 23.76c.3.17.64.24.99.2l12.08-12.08L12.73 8.4 3.18 23.76zm18.61-10.96L19.4 11.6l-2.47 2.47 2.47 2.47 2.41-1.22c.69-.37.69-1.36-.02-1.72zM4.09.24C3.74-.07 3.24-.08 2.87.1L14.82 12.05l3.52-3.52L4.09.24zm8.06 12.4L2.87 23.9c.37.18.87.17 1.22-.14l13.25-7.58-5.19-3.54z"/></svg>
+          <div class="store-btn-labels">
+            <small>ANDROID APP ON</small>
+            <strong>Google play</strong>
+          </div>
+        </a>
+        <a href="https://apps.apple.com/br/app/ufbra-app-do-aluno/id6770727727" target="_blank" rel="noopener" class="store-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          <div class="store-btn-labels">
+            <small>Download on the</small>
+            <strong>App Store</strong>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-phone-blob"></div>
+      <img src="assets/Background.webp" class="hero-phone" alt="App UFBRA">
+    </div>
+  </section>
+
+  <!-- ── FEATURES ── -->
+  <section class="features" id="funcionalidades">
+    <div class="features-header">
+      <h2>Mais organização. Menos preocupação.</h2>
+      <p>Acompanhe tudo o que importa para sua formação.</p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feat-card">
+        <div class="feat-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+        </div>
+        <h3>Notas em tempo real</h3>
+        <p>Receba atualizações imediatas assim que seus professores lançarem as avaliações.</p>
+      </div>
+
+      <div class="feat-card">
+        <div class="feat-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+          </svg>
+        </div>
+        <h3>Calendário acadêmico</h3>
+        <p>Sincronize datas de provas, feriados e eventos importantes diretamente no seu bolso.</p>
+      </div>
+
+      <div class="feat-card">
+        <div class="feat-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+        </div>
+        <h3>Atendimento pelo chat</h3>
+        <p>Resolva pendências administrativas e acadêmicas sem sair de casa com suporte integrado.</p>
+      </div>
+
+      <div class="feat-card">
+        <div class="feat-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+          </svg>
+        </div>
+        <h3>Avisos e notificações</h3>
+        <p>Mantenha-se informado sobre cancelamentos de aulas, novas atividades e prazos.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SPLIT LIGHT — Calendário ── -->
+  <section class="split-light" id="calendario">
+    <div class="split-light-phone">
+      <img src="assets/Background-1.webp" alt="Calendário UFBRA">
+    </div>
+
+    <div class="split-light-content">
+      <h2>Nunca mais perca uma atividade importante.</h2>
+      <ul class="check-list">
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+          Datas de avaliações e exames
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+          Prazos de início e encerramento
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+          Exercícios e materiais complementares
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+          Eventos e palestras institucionais
+        </li>
+      </ul>
+      <a href="https://play.google.com/store/apps/details?id=com.workfuse.ufbra" target="_blank" rel="noopener" class="btn-green">Baixar Agora</a>
+    </div>
+  </section>
+
+  <!-- ── SPLIT DARK — Chat ── -->
+  <section class="split-dark" id="chat">
+    <div class="split-dark-content">
+      <h2>Precisa de ajuda?<br>Estamos a um toque de distância.</h2>
+      <p>Nosso chat integrado permite que você fale com a secretaria ou suporte acadêmico de forma rápida e eficiente.</p>
+
+      <div class="dark-features">
+        <div class="dark-feat">
+          <div class="dark-feat-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+            </svg>
+          </div>
+          <div class="dark-feat-text">
+            <h4>Atendimento rápido</h4>
+            <p>Respostas ágeis para suas dúvidas mais urgentes.</p>
+          </div>
+        </div>
+
+        <div class="dark-feat">
+          <div class="dark-feat-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+          </div>
+          <div class="dark-feat-text">
+            <h4>Comunicação simplificada</h4>
+            <p>Envie documentos e tire dúvidas em um só lugar.</p>
+          </div>
+        </div>
+
+        <div class="dark-feat">
+          <div class="dark-feat-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+          </div>
+          <div class="dark-feat-text">
+            <h4>Suporte sempre disponível</h4>
+            <p>Base de conhecimento e suporte humano ao seu dispor.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="split-dark-phone">
+      <img src="assets/Background+Border.webp" alt="Chat UFBRA">
+    </div>
+  </section>
+
+  <!-- ── PERFORMANCE ── -->
+  <section class="performance" id="desempenho">
+    <div class="perf-phone">
+      <img src="assets/Background-2.webp" alt="Notas UFBRA">
+    </div>
+
+    <div class="perf-content">
+      <h2>Acompanhe seu desempenho sem complicação.</h2>
+      <p>Visualize suas médias por disciplina, faltas e progresso curricular de forma clara e objetiva. Chega de planilhas complexas ou cálculos manuais.</p>
+
+      <div class="perf-cards">
+        <div class="perf-card">
+          <div class="perf-card-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            </svg>
+          </div>
+          <h4>Gráficos Intuitivos</h4>
+          <p>Visualize sua situação semestral rapidamente.</p>
+        </div>
+
+        <div class="perf-card">
+          <div class="perf-card-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/>
+            </svg>
+          </div>
+          <h4>Histórico Completo</h4>
+          <p>Todos os seus lançamentos com segurança.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── STATS BAR ── -->
+  <div class="stats-bar">
+    <p class="stats-bar-title">Feito para facilitar sua rotina acadêmica.</p>
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-number">+15k</div>
+        <div class="stat-label">Milhares de alunos ativos</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">0.5s</div>
+        <div class="stat-label">Acesso rápido e estável</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">100%</div>
+        <div class="stat-label">Comunicação centralizada</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">4.9/5</div>
+        <div class="stat-label">Experiência intuitiva</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="footer-logo"><img src="assets/cupom-de-desconto-ufbra-logo-200-115.webp" alt="UFBRA"></div>
+    <p class="footer-copy">© 2025 UFBRA. Todos os direitos reservados.</p>
+  </footer>
+
+</body>
+</html>
